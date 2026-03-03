@@ -260,7 +260,7 @@ const DesignVisual = ({ isActive }: { isActive: boolean }) => (
           isActive ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: 10, x: 10 }
         }
         transition={{ duration: 0.5, delay: 0.8, type: "spring" }}
-        className="absolute right-4 bottom-8 flex items-center gap-2 rounded-full border border-pink-500/30 bg-pink-500/10 px-3 py-1.5 backdrop-blur-md"
+        className="absolute right-2 bottom-0 flex items-center gap-2 rounded-full border border-pink-500/30 bg-pink-500/10 px-3 py-1.5 backdrop-blur-md xl:right-4 xl:bottom-12"
       >
         <span className="text-[10px] font-medium text-pink-300">
           Pixel Perfect
