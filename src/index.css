@@ -8,13 +8,10 @@
 html {
   scroll-behavior: smooth;
   scrollbar-width: none;
-  background-color: var(--background);
 }
 
 body {
   overflow-x: hidden;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(12px);
 }
 
 ::-webkit-scrollbar {
