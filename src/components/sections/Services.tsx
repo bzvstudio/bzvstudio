@@ -275,7 +275,7 @@ const BuildVisual = () => {
         <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/50" />
         <div className="h-2.5 w-2.5 rounded-full bg-green-500/50" />
       </div>
-      <div className="mt-4 flex flex-col gap-2.5 font-mono text-[11px] text-white/50">
+      <div className="mt-4 flex flex-col gap-2.5 font-mono text-[11px] text-nowrap text-white/50">
         <motion.div
           initial={{ opacity: 0, x: -10, filter: "blur(4px)" }}
           whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
@@ -288,9 +288,9 @@ const BuildVisual = () => {
           className="flex gap-2"
         >
           <span className="text-purple-400">import</span>
-          <span className="text-yellow-200">Next.js</span>
+          <span className="text-yellow-200">{`{ Hero }`}</span>
           <span className="text-purple-400">from</span>
-          <span className="text-emerald-300">'framework'</span>
+          <span className="text-emerald-300">'@/components'</span>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: -10, filter: "blur(4px)" }}
@@ -321,8 +321,8 @@ const BuildVisual = () => {
           className="pl-4"
         >
           <span className="text-purple-400">return</span>
-          <span className="text-blue-400">&lt;</span>
-          <span className="text-yellow-200">Component</span>
+          <span className="text-blue-400"> &lt;</span>
+          <span className="text-yellow-200">Hero</span>
           <span className="text-blue-400"> /&gt;</span>
         </motion.div>
         <motion.div

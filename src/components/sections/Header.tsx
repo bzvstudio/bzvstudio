@@ -40,13 +40,12 @@ export function Header() {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
       <Container className="flex items-center justify-between">
-        <button
-          type="button"
+        <a
+          href="/"
           className="group focus-visible:ring-offset-background flex cursor-pointer items-center gap-2 rounded-sm focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:outline-none"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           <img src={LightLogo} alt="bzvstudio logo" className="h-8 w-auto" />
-        </button>
+        </a>
 
         <nav className="flex items-center gap-8">
           <motion.button

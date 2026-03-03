@@ -13,17 +13,16 @@ export function Footer() {
   return (
     <footer className="border-t border-dashed border-white/10 py-8 lg:py-10 xl:py-12">
       <Container className="flex flex-row items-center justify-between gap-6 pt-0.75 md:flex-row md:gap-8">
-        <button
-          type="button"
+        <a
+          href="/"
           className="group focus-visible:ring-offset-background flex cursor-pointer items-center gap-2 rounded-sm focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:outline-none"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           <img
             src={LightLogo}
             alt="bzvstudio logo"
             className="-mt-0.75 h-8 w-auto opacity-90 transition-opacity group-hover:opacity-100"
           />
-        </button>
+        </a>
 
         <div className="flex items-center gap-6">
           <motion.a
