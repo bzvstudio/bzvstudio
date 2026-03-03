@@ -40,16 +40,17 @@ export function Header() {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
       <Container className="flex items-center justify-between">
-        <div
-          className="group flex cursor-pointer items-center gap-2"
+        <button
+          type="button"
+          className="group focus-visible:ring-offset-background flex cursor-pointer items-center gap-2 rounded-sm focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:outline-none"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           <img src={LightLogo} alt="bzvstudio logo" className="h-8 w-auto" />
-        </div>
+        </button>
 
         <nav className="flex items-center gap-8">
           <motion.button
-            className="group relative inline-flex h-9 overflow-hidden rounded-full p-[1px] focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 focus:outline-none"
+            className="group focus-visible:ring-offset-background relative inline-flex h-9 overflow-hidden rounded-full p-[1px] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:outline-none"
             whileHover="hover"
             data-umami-event="Header - Say Hi"
             onMouseEnter={() => {

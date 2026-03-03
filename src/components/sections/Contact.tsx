@@ -305,7 +305,7 @@ export function Contact() {
                 <div className="flex flex-wrap items-center gap-6">
                   <motion.a
                     href={`mailto:${email}`}
-                    className="text-muted-foreground flex items-center gap-2 transition-colors hover:text-white"
+                    className="text-muted-foreground focus-visible:ring-offset-background flex items-center gap-2 rounded-sm transition-colors outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
                     whileHover="hover"
                     initial="initial"
                     data-umami-event="Contact - Email Link"
@@ -325,7 +325,7 @@ export function Contact() {
                     href={telegram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-muted-foreground flex items-center gap-2 transition-colors hover:text-white"
+                    className="text-muted-foreground focus-visible:ring-offset-background flex items-center gap-2 rounded-sm transition-colors outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
                     whileHover="hover"
                     initial="initial"
                     data-umami-event="Contact - Telegram Link"
@@ -345,7 +345,7 @@ export function Contact() {
                     href={whatsapp}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-muted-foreground flex items-center gap-2 transition-colors hover:text-white"
+                    className="text-muted-foreground focus-visible:ring-offset-background flex items-center gap-2 rounded-sm transition-colors outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
                     whileHover="hover"
                     initial="initial"
                     data-umami-event="Contact - WhatsApp Link"
@@ -562,9 +562,17 @@ export function Contact() {
                     </Caption>
                   </div>
                   <div
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        fileInputRef.current?.click();
+                      }
+                    }}
                     onClick={() => fileInputRef.current?.click()}
                     className={cn(
-                      "group flex cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-white/10 bg-white/5 p-8 transition-colors hover:bg-white/10",
+                      "group focus-visible:ring-offset-background flex cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-white/10 bg-white/5 p-8 transition-colors outline-none hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2",
                       errors.brief &&
                         "border-red-500 bg-red-500/5 hover:bg-red-500/10",
                     )}
@@ -582,12 +590,14 @@ export function Contact() {
                         <Body50 className="text-white">
                           {formData.brief.name}
                         </Body50>
-                        <div
+                        <button
+                          type="button"
                           onClick={removeFile}
-                          className="z-10 cursor-pointer rounded-full p-1 hover:bg-white/10"
+                          onKeyDown={(e) => e.stopPropagation()}
+                          className="focus-visible:ring-offset-background z-10 cursor-pointer rounded-full p-1 outline-none hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
                         >
                           <X className="h-4 w-4 text-white" />
-                        </div>
+                        </button>
                       </div>
                     ) : (
                       <Body50
@@ -616,7 +626,7 @@ export function Contact() {
                         checked={formData.agreeProcessing}
                         onChange={handleChange}
                         className={cn(
-                          "peer h-5 w-5 appearance-none rounded border border-white/20 bg-transparent transition-all checked:border-white checked:bg-white",
+                          "peer focus-visible:ring-offset-background h-5 w-5 appearance-none rounded border border-white/20 bg-transparent transition-all outline-none checked:border-white checked:bg-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2",
                           errors.agreeProcessing && "border-red-500",
                         )}
                       />
@@ -641,7 +651,7 @@ export function Contact() {
                     disabled={!isFormValid}
                     data-umami-event="Contact Form Submit"
                     className={cn(
-                      "flex h-14 w-full items-center justify-center rounded-full bg-white text-base font-bold tracking-wide text-black uppercase transition-colors",
+                      "focus-visible:ring-offset-background flex h-14 w-full items-center justify-center rounded-full bg-white text-base font-bold tracking-wide text-black uppercase transition-colors outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2",
                       isFormValid
                         ? "hover:bg-white/90"
                         : "cursor-not-allowed opacity-50",
