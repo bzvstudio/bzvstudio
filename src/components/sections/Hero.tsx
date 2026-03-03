@@ -109,7 +109,7 @@ export function Hero() {
           animate={{ opacity: 1, rotateX: 0 }}
           transition={{
             duration: 1,
-            delay: 1.7,
+            delay: 1.2,
             type: "spring",
             stiffness: 120,
             damping: 20,
@@ -136,21 +136,26 @@ export function Hero() {
         <Display100 as="h1" className="text-foreground relative z-20">
           <span className="overflow-hidden">
             <motion.span
-              initial={{ y: "30%", rotate: 2, opacity: 0 }}
-              animate={{ y: 0, rotate: 0, opacity: 1 }}
+              initial={{
+                y: "30%",
+                rotate: 1,
+                opacity: 0,
+                filter: "blur(5px)",
+              }}
+              animate={{ y: 0, rotate: 0, opacity: 1, filter: "blur(0px)" }}
               transition={{
                 duration: 0.8,
                 delay: 0.3,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="inline-block origin-top-left"
+              className="inline-block origin-top-left sm:text-nowrap"
             >
-              Future-ready websites
+              Future-ready websites <span className="sm:hidden">for</span>
             </motion.span>
           </span>
           <span className="overflow-hidden">
             <motion.span
-              initial={{ y: "30%", rotate: 2, opacity: 0 }}
+              initial={{ y: "30%", rotate: 1, opacity: 0 }}
               animate={{ y: 0, rotate: 0, opacity: 1 }}
               transition={{
                 duration: 0.8,
@@ -159,7 +164,7 @@ export function Hero() {
               }}
               className="inline-block origin-top-left bg-gradient-to-br from-white via-white/80 to-white/40 bg-clip-text text-transparent"
             >
-              for modern brands.
+              <span className="hidden sm:inline-block">for</span> modern brands.
             </motion.span>
           </span>
         </Display100>
@@ -172,8 +177,8 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="text-muted-foreground max-w-xl"
         >
-          Design. Develop. Deploy — done right. Unlock the full potential of
-          your business.
+          Design. Build. Launch — done right. Unlock the full potential of the
+          digital side of your business.
         </Body200>
 
         {/* CTAs */}
@@ -217,7 +222,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
-          className="mt-12 flex items-center gap-2 md:mt-24"
+          className="mt-8 flex items-center gap-2 md:mt-20"
         >
           <MapPin className="text-muted-foreground h-4 w-4" />
           <Body50
