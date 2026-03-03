@@ -6,7 +6,7 @@ import {
   useSpring,
   useMotionValueEvent,
 } from "motion/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import LightLogo from "@/assets/Light Logo.svg";
 import { Container } from "@/components/layout";
@@ -26,6 +26,20 @@ export function Header() {
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 20);
   });
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      void handControls.start({
+        rotate: [12, 35, -8, 12],
+        transition: {
+          duration: 0.8,
+          ease: [0.16, 1, 0.3, 1],
+        },
+      });
+    }, 1500); // Wait for header entrance (0.8s) + delay
+
+    return () => clearTimeout(timer);
+  }, [handControls]);
 
   return (
     <motion.header
