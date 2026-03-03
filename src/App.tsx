@@ -1,26 +1,34 @@
-import { useEffect, Suspense, lazy } from "react";
+import { useEffect, Suspense, lazy, useRef } from "react";
 import Lenis from "lenis";
+import { useInView } from "motion/react";
 
 import { Footer } from "@/components/sections/Footer";
 import { Header } from "@/components/sections/Header";
 import { Hero } from "@/components/sections/Hero";
+import { Process } from "@/components/sections/Process";
+import { Services } from "@/components/sections/Services";
 import { Toaster } from "@/components/ui/sonner";
 
-const Contact = lazy(() =>
+const ContactLazy = lazy(() =>
   import("@/components/sections/Contact").then((module) => ({
     default: module.Contact,
   })),
 );
-const Process = lazy(() =>
-  import("@/components/sections/Process").then((module) => ({
-    default: module.Process,
-  })),
-);
-const Services = lazy(() =>
-  import("@/components/sections/Services").then((module) => ({
-    default: module.Services,
-  })),
-);
+
+const Contact = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "50% 0px 50% 0px" }); // Load when within 50% viewport height
+
+  return (
+    <div id="contact" ref={ref} className="min-h-screen w-full">
+      {isInView ? (
+        <Suspense fallback={<div className="bg-background min-h-screen" />}>
+          <ContactLazy />
+        </Suspense>
+      ) : null}
+    </div>
+  );
+};
 
 export function App() {
   useEffect(() => {
@@ -49,11 +57,9 @@ export function App() {
       <Header />
       <main>
         <Hero />
-        <Suspense fallback={<div className="bg-background min-h-screen" />}>
-          <Services />
-          <Process />
-          <Contact />
-        </Suspense>
+        <Services />
+        <Process />
+        <Contact />
       </main>
       <Footer />
       <Toaster />

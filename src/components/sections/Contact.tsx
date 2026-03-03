@@ -265,7 +265,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32">
+    <section className="py-24 md:py-32">
       <Container>
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
           {/* Left Column */}
@@ -452,6 +452,7 @@ export function Contact() {
                     onValueChange={(val) => handleSelectChange("source", val)}
                   >
                     <SelectTrigger
+                      aria-label="Where did you hear about us?"
                       className={cn(
                         "h-12! w-full border-white/10 bg-white/5 text-base transition-colors focus:bg-white/10 md:text-sm",
                         errors.source &&
@@ -520,6 +521,7 @@ export function Contact() {
                     onValueChange={(val) => handleSelectChange("budget", val)}
                   >
                     <SelectTrigger
+                      aria-label="Budget"
                       className={cn(
                         "h-12! w-full border-white/10 bg-white/5 text-base transition-colors focus:bg-white/10 md:text-sm",
                         errors.budget &&
@@ -592,6 +594,7 @@ export function Contact() {
                         </Body50>
                         <button
                           type="button"
+                          aria-label="Remove file"
                           onClick={removeFile}
                           onKeyDown={(e) => e.stopPropagation()}
                           className="focus-visible:ring-offset-background z-10 cursor-pointer rounded-full p-1 outline-none hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"

@@ -36,6 +36,11 @@ export function Hero() {
       {/* Top Center-Right Blob */}
       <motion.div
         style={{ x, y }}
+        initial={{
+          scale: 1,
+          opacity: 0.3,
+          borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
+        }}
         animate={{
           scale: [1, 1.1, 0.9, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -58,6 +63,11 @@ export function Hero() {
         style={{
           x: xInverse,
           y: yInverse,
+        }}
+        initial={{
+          scale: 1,
+          opacity: 0.2,
+          borderRadius: "40% 60% 70% 30% / 40% 40% 60% 50%",
         }}
         animate={{
           scale: [1, 1.2, 0.8, 1],
@@ -82,6 +92,11 @@ export function Hero() {
         style={{
           x: useTransform(springX, [-0.5, 0.5], ["-15px", "15px"]),
           y: useTransform(springY, [-0.5, 0.5], ["15px", "-15px"]),
+        }}
+        initial={{
+          scale: 0.9,
+          opacity: 0.2,
+          borderRadius: "50% 50% 20% 80% / 25% 80% 20% 75%",
         }}
         animate={{
           scale: [0.9, 1.1, 1],
@@ -196,7 +211,7 @@ export function Hero() {
         >
           <Button
             size="lg"
-            className="h-12 cursor-pointer rounded-full bg-white px-8 text-base font-medium text-black transition-all duration-300 hover:scale-105 hover:bg-white/90 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+            className="focus-visible:ring-offset-background h-12 cursor-pointer rounded-full bg-white px-8 text-base font-medium text-black transition-all duration-300 outline-none hover:scale-105 hover:bg-white/90 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
             data-umami-event="Hero - Start Project"
             onClick={() => {
               const contactSection = document.getElementById("contact");

@@ -4,27 +4,40 @@ import {
   useAnimation,
   useScroll,
   useSpring,
-  useMotionValueEvent,
+  useTransform,
 } from "motion/react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import LightLogo from "@/assets/Light Logo.svg";
 import { Container } from "@/components/layout";
 import { Body100 } from "@/components/ui";
-import { cn } from "@/lib/utils";
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const handControls = useAnimation();
   const { scrollY, scrollYProgress } = useScroll();
+
+  // Transform scrollY to styles to avoid re-renders and layout thrashing
+  const paddingBlock = useTransform(scrollY, [0, 20], ["1.5rem", "1rem"]); // py-6 -> py-4
+  const backgroundColor = useTransform(
+    scrollY,
+    [0, 20],
+    ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.6)"],
+  );
+  const borderBottomColor = useTransform(
+    scrollY,
+    [0, 20],
+    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.05)"],
+  );
+  const backdropFilter = useTransform(
+    scrollY,
+    [0, 20],
+    ["blur(0px)", "blur(12px)"],
+  );
+
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
-  });
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 20);
   });
 
   useEffect(() => {
@@ -43,12 +56,15 @@ export function Header() {
 
   return (
     <motion.header
-      className={cn(
-        "fixed top-0 right-0 left-0 z-50 transition-all duration-500",
-        isScrolled
-          ? "bg-background/60 border-b border-white/5 py-4 backdrop-blur-md"
-          : "bg-transparent py-6",
-      )}
+      className="fixed top-0 right-0 left-0 z-50"
+      style={{
+        paddingBlock,
+        backgroundColor,
+        borderBottomWidth: 1,
+        borderBottomColor,
+        backdropFilter,
+        WebkitBackdropFilter: backdropFilter, // Safari support
+      }}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -58,7 +74,13 @@ export function Header() {
           href="/"
           className="group focus-visible:ring-offset-background flex cursor-pointer items-center gap-2 rounded-sm focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:outline-none"
         >
-          <img src={LightLogo} alt="bzvstudio logo" className="h-8 w-auto" />
+          <img
+            src={LightLogo}
+            width={129}
+            height={32}
+            alt="bzvstudio logo"
+            className="h-8 w-auto"
+          />
         </a>
 
         <nav className="flex items-center gap-8">

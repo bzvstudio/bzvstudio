@@ -19,6 +19,8 @@ export function Footer() {
         >
           <img
             src={LightLogo}
+            width={129}
+            height={32}
             alt="bzvstudio logo"
             className="-mt-0.75 h-8 w-auto opacity-90 transition-opacity group-hover:opacity-100"
           />
@@ -27,6 +29,7 @@ export function Footer() {
         <div className="flex items-center gap-6">
           <motion.a
             href={`mailto:${email}`}
+            aria-label="Email"
             className="text-muted-foreground focus-visible:ring-offset-background flex items-center gap-2 rounded-sm transition-colors outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
             whileHover="hover"
             initial="initial"
@@ -49,6 +52,7 @@ export function Footer() {
             href={telegram}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Telegram"
             className="text-muted-foreground focus-visible:ring-offset-background flex items-center gap-2 rounded-sm transition-colors outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
             whileHover="hover"
             initial="initial"
@@ -71,6 +75,7 @@ export function Footer() {
             href={whatsapp}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="WhatsApp"
             className="text-muted-foreground focus-visible:ring-offset-background flex items-center gap-2 rounded-sm transition-colors outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
             whileHover="hover"
             initial="initial"
