@@ -69,14 +69,6 @@ export function Header() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
-      <motion.div
-        className="absolute right-0 bottom-full left-0 h-[500px]"
-        style={{
-          backgroundColor,
-          backdropFilter,
-          WebkitBackdropFilter: backdropFilter,
-        }}
-      />
       <Container className="flex items-center justify-between">
         <a
           href="/"
