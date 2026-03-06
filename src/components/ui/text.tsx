@@ -7,7 +7,7 @@ interface TextProps extends React.HTMLAttributes<HTMLElement> {
   [key: string]: unknown;
 }
 
-export function Text({ children, className = "", as, ...props }: TextProps) {
+function Text({ children, className = "", as, ...props }: TextProps) {
   const Component = as || "p";
   return (
     <Component className={className} {...props}>

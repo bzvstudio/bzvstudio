@@ -1,6 +1,6 @@
 import { Hand } from "lucide-react";
 import {
-  motion,
+  m,
   useAnimation,
   useScroll,
   useSpring,
@@ -55,7 +55,7 @@ export function Header() {
   }, [handControls]);
 
   return (
-    <motion.header
+    <m.header
       className="fixed top-0 right-0 left-0 z-50"
       style={{
         paddingBlock,
@@ -84,7 +84,7 @@ export function Header() {
         </a>
 
         <nav className="flex items-center gap-8">
-          <motion.button
+          <m.button
             className="group focus-visible:ring-offset-background relative inline-flex h-9 overflow-hidden rounded-full p-[1px] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:outline-none"
             whileHover="hover"
             data-umami-event="Header - Say Hi"
@@ -110,20 +110,20 @@ export function Header() {
               className="inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-black px-6 font-medium text-white backdrop-blur-3xl transition-all group-hover:bg-black/80"
             >
               <span>Say Hi</span>
-              <motion.div
+              <m.div
                 animate={handControls}
                 className="origin-[50%_90%] rotate-[12deg]"
               >
                 <Hand className="h-4 w-4" />
-              </motion.div>
+              </m.div>
             </Body100>
-          </motion.button>
+          </m.button>
         </nav>
       </Container>
-      <motion.div
+      <m.div
         className="absolute right-0 bottom-0 left-0 h-[2px] origin-left bg-white"
         style={{ scaleX }}
       />
-    </motion.header>
+    </m.header>
   );
 }

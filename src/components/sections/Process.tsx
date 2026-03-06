@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useInView } from "motion/react";
+import { m, useScroll, useTransform, useInView } from "motion/react";
 import {
   Check,
   Code,
@@ -52,7 +52,7 @@ const DiscoveryVisual = ({ isActive }: { isActive: boolean }) => {
       />
 
       {/* Ambient Glow */}
-      <motion.div
+      <m.div
         animate={isActive ? { opacity: 0.5 } : { opacity: 0.2 }}
         transition={{ duration: 2 }}
         className="bg-radial-at-c absolute inset-0 from-violet-500/10 to-transparent"
@@ -61,7 +61,7 @@ const DiscoveryVisual = ({ isActive }: { isActive: boolean }) => {
       {/* Central Insight Core */}
       <div className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
         {/* Outer Orbit Ring */}
-        <motion.div
+        <m.div
           animate={
             isActive ? { rotate: 360, opacity: 1 } : { rotate: 0, opacity: 0.5 }
           }
@@ -70,7 +70,7 @@ const DiscoveryVisual = ({ isActive }: { isActive: boolean }) => {
         />
 
         {/* Pulsing Aura */}
-        <motion.div
+        <m.div
           animate={
             isActive
               ? { scale: [1, 1.5, 1], opacity: 0.5 }
@@ -81,14 +81,14 @@ const DiscoveryVisual = ({ isActive }: { isActive: boolean }) => {
         />
 
         {/* Core Sphere */}
-        <motion.div
+        <m.div
           initial={{ scale: 0 }}
           animate={isActive ? { scale: 1 } : { scale: 0 }}
           transition={{ duration: 0.5, type: "spring" }}
           className="relative flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-2xl backdrop-blur-md"
         >
           <div className="h-6 w-6 rounded-full bg-gradient-to-tr from-violet-400 to-indigo-400 shadow-[0_0_20px_rgba(139,92,246,0.8)]" />
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Connecting Lines */}
@@ -100,9 +100,9 @@ const DiscoveryVisual = ({ isActive }: { isActive: boolean }) => {
             <stop offset="100%" stopColor="rgba(139, 92, 246, 0)" />
           </linearGradient>
         </defs>
-        {nodes.map((node, i) => (
-          <motion.line
-            key={`line-${i}`}
+        {nodes.map((node) => (
+          <m.line
+            key={`line-${node.x}-${node.y}`}
             x1={`${node.x}%`}
             y1={`${node.y}%`}
             x2="50%"
@@ -121,9 +121,9 @@ const DiscoveryVisual = ({ isActive }: { isActive: boolean }) => {
       </svg>
 
       {/* Floating Insight Nodes */}
-      {nodes.map((node, i) => (
-        <motion.div
-          key={`node-${i}`}
+      {nodes.map((node) => (
+        <m.div
+          key={`node-${node.x}-${node.y}`}
           className="absolute -translate-x-1/2 -translate-y-1/2"
           style={{ left: `${node.x}%`, top: `${node.y}%` }}
           initial={{ scale: 0, opacity: 0 }}
@@ -141,7 +141,7 @@ const DiscoveryVisual = ({ isActive }: { isActive: boolean }) => {
           />
 
           {/* Abstract Data Label */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, width: 0 }}
             animate={
               isActive
@@ -151,11 +151,11 @@ const DiscoveryVisual = ({ isActive }: { isActive: boolean }) => {
             transition={{ duration: 0.5, delay: node.delay + 0.3 }}
             className="absolute top-full left-1/2 mt-2 h-0.5 rounded-full bg-gradient-to-r from-violet-500/50 to-transparent"
           />
-        </motion.div>
+        </m.div>
       ))}
 
       {/* Scanning Beam */}
-      <motion.div
+      <m.div
         animate={isActive ? { rotate: 360 } : { rotate: 0 }}
         transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
         className="pointer-events-none absolute top-1/2 left-1/2 h-[150%] w-[150%] -translate-x-1/2 -translate-y-1/2 bg-[conic-gradient(from_0deg,transparent_0deg,rgba(139,92,246,0.1)_20deg,transparent_40deg)]"
@@ -172,38 +172,38 @@ const DesignVisual = ({ isActive }: { isActive: boolean }) => (
     <div className="relative flex h-full flex-col justify-center gap-4 px-2">
       {/* 1. Typography & Colors (Top Row) */}
       <div className="flex items-center justify-between">
-        <motion.div
+        <m.div
           animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           className="flex items-center gap-2 rounded-full border border-white/5 bg-white/5 px-3 py-1.5"
         >
           <div className="h-2 w-2 rounded-full bg-pink-500" />
           <div className="h-1.5 w-12 rounded-full bg-white/10" />
-        </motion.div>
+        </m.div>
 
         <div className="flex -space-x-2">
-          {[0, 1, 2].map((i) => (
-            <motion.div
-              key={i}
+          {[0, 1, 2].map((colorIndex) => (
+            <m.div
+              key={colorIndex}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={
                 isActive
                   ? { opacity: 1, x: 0, scale: 1 }
                   : { opacity: 0, x: 10, scale: 0.8 }
               }
-              transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
+              transition={{ duration: 0.4, delay: 0.3 + colorIndex * 0.1 }}
               className="h-6 w-6 rounded-full border border-black/50 bg-white/10 backdrop-blur-md"
               style={{
                 backgroundColor:
-                  i === 0
+                  colorIndex === 0
                     ? "rgba(236, 72, 153, 0.2)"
-                    : i === 1
+                    : colorIndex === 1
                       ? "rgba(168, 85, 247, 0.2)"
                       : "rgba(59, 130, 246, 0.2)",
                 borderColor:
-                  i === 0
+                  colorIndex === 0
                     ? "rgba(236, 72, 153, 0.5)"
-                    : i === 1
+                    : colorIndex === 1
                       ? "rgba(168, 85, 247, 0.5)"
                       : "rgba(59, 130, 246, 0.5)",
               }}
@@ -213,7 +213,7 @@ const DesignVisual = ({ isActive }: { isActive: boolean }) => (
       </div>
 
       {/* 2. Main Interface Card (Middle) */}
-      <motion.div
+      <m.div
         initial={{ scale: 0.95, opacity: 0, y: 10 }}
         animate={
           isActive
@@ -236,7 +236,7 @@ const DesignVisual = ({ isActive }: { isActive: boolean }) => (
 
           {/* Content Mock */}
           <div className="flex-1 space-y-2">
-            <motion.div
+            <m.div
               initial={{ width: "0%" }}
               animate={isActive ? { width: "100%" } : { width: "0%" }}
               transition={{ duration: 0.8, delay: 0.5 }}
@@ -251,10 +251,10 @@ const DesignVisual = ({ isActive }: { isActive: boolean }) => (
 
         {/* Decor Elements */}
         <Layout className="absolute right-2 bottom-2 h-4 w-4 text-white/10" />
-      </motion.div>
+      </m.div>
 
       {/* 3. Floating Tooltip/Cursor (Interaction) */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 10, x: 10 }}
         animate={
           isActive ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: 10, x: 10 }
@@ -266,7 +266,7 @@ const DesignVisual = ({ isActive }: { isActive: boolean }) => (
           Pixel Perfect
         </span>
         <MousePointer2 className="h-3 w-3 fill-pink-500 text-pink-500" />
-      </motion.div>
+      </m.div>
     </div>
   </div>
 );
@@ -291,7 +291,7 @@ const BuildVisual = ({ isActive }: { isActive: boolean }) => (
     {/* Content */}
     <div className="relative flex-1 p-4 text-nowrap">
       <div className="space-y-1.5 text-blue-400/90">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, x: -10 }}
           animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
           transition={{ delay: 0.2 }}
@@ -300,18 +300,18 @@ const BuildVisual = ({ isActive }: { isActive: boolean }) => (
           <span className="text-purple-400">default</span>{" "}
           <span className="text-blue-400">function</span>{" "}
           <span className="text-yellow-200">Page</span>() {"{"}
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={isActive ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 0.3 }}
           className="pl-4"
         >
           <span className="text-purple-400">return</span> (
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 5 }}
           animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 5 }}
           transition={{ delay: 0.5 }}
@@ -322,9 +322,9 @@ const BuildVisual = ({ isActive }: { isActive: boolean }) => (
           {" fallback={<"}
           <span className="text-yellow-200">Loading</span>
           {" />}>"}
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 5 }}
           animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 5 }}
           transition={{ delay: 0.6 }}
@@ -335,9 +335,9 @@ const BuildVisual = ({ isActive }: { isActive: boolean }) => (
           <span className="text-sky-300"> data</span>=
           <span className="text-orange-300">{"{data}"}</span>
           {" />"}
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={isActive ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 0.7 }}
@@ -346,29 +346,29 @@ const BuildVisual = ({ isActive }: { isActive: boolean }) => (
           {"</"}
           <span className="text-yellow-200">Suspense</span>
           {">"}
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={isActive ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 0.8 }}
           className="pl-4"
         >
           )
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={isActive ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 0.9 }}
         >
           {"}"}
-        </motion.div>
+        </m.div>
       </div>
     </div>
 
     {/* Terminal / Status Bar */}
-    <motion.div
+    <m.div
       initial={{ y: "100%" }}
       animate={isActive ? { y: 0 } : { y: "100%" }}
       transition={{ delay: 1.2, type: "spring", stiffness: 100, damping: 20 }}
@@ -380,23 +380,23 @@ const BuildVisual = ({ isActive }: { isActive: boolean }) => (
           <span>Terminal</span>
         </div>
         <div className="flex items-center gap-1.5 text-blue-400">
-          <motion.div
+          <m.div
             initial={{ scale: 0 }}
             animate={isActive ? { scale: 1 } : { scale: 0 }}
             transition={{ delay: 1.4, type: "spring" }}
           >
             <Check className="h-3 w-3" />
-          </motion.div>
-          <motion.span
+          </m.div>
+          <m.span
             initial={{ opacity: 0 }}
             animate={isActive ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: 1.5 }}
           >
             Compiled in 142ms
-          </motion.span>
+          </m.span>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   </div>
 );
 
@@ -405,26 +405,26 @@ const LaunchVisual = ({ isActive }: { isActive: boolean }) => (
     <div className="absolute inset-0 bg-linear-to-br from-emerald-500/10 via-transparent to-transparent opacity-50" />
     {/* Rocket Launch */}
     <div className="flex h-full flex-col items-center justify-center gap-4">
-      <motion.div
+      <m.div
         animate={isActive ? { y: -20, scale: 1.1 } : { y: 0, scale: 1 }}
         transition={{ duration: 2, ease: "easeInOut" }}
         className="relative"
       >
         <Rocket className="h-12 w-12 text-emerald-500" />
-        <motion.div
+        <m.div
           animate={
             isActive ? { height: 40, opacity: 1 } : { height: 0, opacity: 0 }
           }
           className="absolute top-full left-1/2 mt-1 w-1 -translate-x-1/2 rounded-full bg-linear-to-b from-emerald-500 to-transparent"
         />
-      </motion.div>
+      </m.div>
       <div className="w-full space-y-2">
         <div className="flex justify-between text-xs text-white/50">
           <span>Deploying...</span>
           <span>100%</span>
         </div>
         <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-          <motion.div
+          <m.div
             initial={{ width: "0%" }}
             animate={isActive ? { width: "100%" } : { width: "0%" }}
             transition={{ duration: 1.5, ease: "easeInOut" }}
@@ -432,14 +432,14 @@ const LaunchVisual = ({ isActive }: { isActive: boolean }) => (
           />
         </div>
       </div>
-      <motion.div
+      <m.div
         initial={{ scale: 0 }}
         animate={isActive ? { scale: 1 } : { scale: 0 }}
         transition={{ delay: 1.5, type: "spring" }}
         className="rounded-full border border-emerald-500/30 bg-emerald-500/20 px-3 py-1 text-xs font-medium text-emerald-400"
       >
         Live
-      </motion.div>
+      </m.div>
     </div>
   </div>
 );
@@ -469,7 +469,7 @@ const MaintenanceVisual = ({ isActive }: { isActive: boolean }) => (
       {/* Security Layer (Middle) */}
       <div className="relative flex flex-1 flex-col items-center justify-center">
         {/* Radar / Shield Animation */}
-        <motion.div
+        <m.div
           animate={
             isActive
               ? { scale: [1, 1.2, 1], opacity: 0.5 }
@@ -478,7 +478,7 @@ const MaintenanceVisual = ({ isActive }: { isActive: boolean }) => (
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           className="absolute inset-0 rounded-full bg-indigo-500/5 blur-3xl"
         />
-        <motion.div
+        <m.div
           initial={{ scale: 0, opacity: 0 }}
           animate={
             isActive ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }
@@ -489,7 +489,7 @@ const MaintenanceVisual = ({ isActive }: { isActive: boolean }) => (
           <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-indigo-500/20 bg-indigo-500/10 shadow-[0_0_15px_rgba(99,102,241,0.3)] backdrop-blur-md">
             <ShieldCheck className="h-8 w-8 text-indigo-400" />
             {/* Scanning Ring */}
-            <motion.div
+            <m.div
               animate={{ rotate: 360 }}
               transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
               className="absolute inset-0 rounded-full border-t border-indigo-400/50"
@@ -503,7 +503,7 @@ const MaintenanceVisual = ({ isActive }: { isActive: boolean }) => (
               0 Threats Detected
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Graph (Bottom) - Taller */}
@@ -517,25 +517,25 @@ const MaintenanceVisual = ({ isActive }: { isActive: boolean }) => (
 
         {/* Bars */}
         <div className="absolute inset-0 flex items-end gap-1 px-2 pb-0">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
+          {Array.from({ length: 20 }, (_, i) => i).map((barIndex) => (
+            <m.div
+              key={barIndex}
               animate={
                 isActive
                   ? {
                       height: [
-                        20 + ((i * 7) % 60) + "%",
-                        40 + (((i + 2) * 9) % 50) + "%",
-                        20 + ((i * 7) % 60) + "%",
+                        20 + ((barIndex * 7) % 60) + "%",
+                        40 + (((barIndex + 2) * 9) % 50) + "%",
+                        20 + ((barIndex * 7) % 60) + "%",
                       ],
                     }
                   : { height: "20%" }
               }
               transition={{
-                duration: 3 + (i % 3),
+                duration: 3 + (barIndex % 3),
                 repeat: Infinity,
                 repeatType: "reverse",
-                delay: i * 0.05,
+                delay: barIndex * 0.05,
                 ease: "easeInOut",
               }}
               className="flex-1 rounded-t-sm bg-indigo-500/40 transition-colors hover:bg-indigo-400/60"
@@ -613,7 +613,7 @@ export function Process() {
   return (
     <section ref={containerRef} className="relative bg-black">
       <Container className="py-20">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -630,7 +630,7 @@ export function Process() {
             happening and what comes next. Every project moves through five
             clear stages, from discovery to launch and beyond.
           </Body200>
-        </motion.div>
+        </m.div>
 
         {/* --- Desktop Timeline (Central Straight Line) --- */}
         <div className="relative hidden lg:block">
@@ -653,7 +653,7 @@ export function Process() {
                 </linearGradient>
 
                 <mask id="dash-mask">
-                  <motion.line
+                  <m.line
                     x1="50%"
                     y1="0"
                     x2="50%"
@@ -701,7 +701,7 @@ export function Process() {
           <div className="flex flex-col">
             {processSteps.map((step, index) => (
               <ProcessStep
-                key={index}
+                key={step.title}
                 step={step}
                 index={index}
                 isEven={index % 2 !== 0}
@@ -714,7 +714,7 @@ export function Process() {
         <div ref={mobileContainerRef} className="relative lg:hidden">
           <div className="absolute top-8 bottom-20 left-6 w-px -translate-x-1/2 bg-white/10">
             {/* Full Height Gradient (Revealed via Clip Path) */}
-            <motion.div
+            <m.div
               style={{
                 clipPath: useTransform(
                   mobileProgress,
@@ -726,7 +726,7 @@ export function Process() {
             />
 
             {/* Glowing Tip (Follows Progress) */}
-            <motion.div
+            <m.div
               style={{
                 top: useTransform(mobileProgress, [0, 1], ["0%", "100%"]),
                 opacity: useTransform(
@@ -739,11 +739,11 @@ export function Process() {
             >
               <div className="h-8 w-1 bg-white blur-md" />
               <div className="absolute top-1/2 left-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_10px_white]" />
-            </motion.div>
+            </m.div>
           </div>
           <div className="space-y-16 pt-8 pb-20 md:pb-20">
             {processSteps.map((step, index) => (
-              <ProcessStepMobile key={index} step={step} index={index} />
+              <ProcessStepMobile key={step.title} step={step} index={index} />
             ))}
           </div>
         </div>
@@ -782,7 +782,7 @@ const ProcessStepMobile = ({
   };
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
@@ -791,7 +791,7 @@ const ProcessStepMobile = ({
     >
       {/* Mobile Node (Centered Vertically on Step) */}
       <div className="absolute top-1/2 left-6 z-10 -translate-x-1/2 -translate-y-1/2">
-        <motion.div
+        <m.div
           animate={
             isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }
           }
@@ -799,7 +799,7 @@ const ProcessStepMobile = ({
           className={`h-4 w-4 rounded-full ${step.glow} shadow-[0_0_15px_currentColor] ring-4 ring-black`}
           style={{ color: step.color }}
         />
-        <motion.div
+        <m.div
           animate={
             isInView
               ? { scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }
@@ -813,7 +813,7 @@ const ProcessStepMobile = ({
       <div className="space-y-6">
         <div className="flex flex-col gap-4">
           {/* Icon and Number Row */}
-          <motion.div
+          <m.div
             variants={itemVariants}
             className="flex items-center gap-4"
           >
@@ -826,18 +826,18 @@ const ProcessStepMobile = ({
             <span className="font-display text-5xl font-bold text-white/10">
               0{index + 1}
             </span>
-          </motion.div>
+          </m.div>
 
           {/* Header */}
-          <motion.div variants={itemVariants}>
+          <m.div variants={itemVariants}>
             <Header200 className="text-2xl! font-bold text-white">
               {step.title}
             </Header200>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Description */}
-        <motion.div variants={itemVariants}>
+        <m.div variants={itemVariants}>
           <Body100 className="leading-relaxed text-white/60">
             {step.description}
           </Body100>
@@ -846,10 +846,10 @@ const ProcessStepMobile = ({
               {step.disclaimer}
             </p>
           )}
-        </motion.div>
+        </m.div>
 
         {/* Visual Card */}
-        <motion.div
+        <m.div
           variants={itemVariants}
           className="relative h-68 w-full overflow-hidden rounded-2xl border border-white/10 bg-black/40 shadow-2xl"
         >
@@ -857,9 +857,9 @@ const ProcessStepMobile = ({
 
           {/* Glass Overlay */}
           <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/10 ring-inset" />
-        </motion.div>
+        </m.div>
       </div>
-    </motion.div>
+    </m.div>
   );
 };
 
@@ -885,7 +885,7 @@ const ProcessStep = ({
         >
           {/* Central Node Indicator (Ambiguous/Blurred) */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ margin: "-45% 0px -45% 0px" }}
@@ -902,12 +902,12 @@ const ProcessStep = ({
               />
               {/* Inner Core (Softer) */}
               <div className="h-2 w-2 rounded-full bg-white/90 shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Content Side */}
           <div className={`flex-1 ${isEven ? "text-right" : "text-left"}`}>
-            <motion.div
+            <m.div
               initial="hidden"
               whileInView="visible"
               viewport={{ margin: "-20% 0px -20% 0px" }}
@@ -926,7 +926,7 @@ const ProcessStep = ({
               <div
                 className={`flex items-center gap-4 ${isEven ? "flex-row-reverse" : ""}`}
               >
-                <motion.div
+                <m.div
                   variants={{
                     hidden: {
                       opacity: 0,
@@ -955,8 +955,8 @@ const ProcessStep = ({
                   style={{ color: step.color }}
                 >
                   <step.icon className="h-8 w-8" />
-                </motion.div>
-                <motion.div
+                </m.div>
+                <m.div
                   variants={{
                     hidden: {
                       opacity: 0,
@@ -977,11 +977,11 @@ const ProcessStep = ({
                   <Display200 className="text-6xl font-bold text-white/10">
                     0{index + 1}
                   </Display200>
-                </motion.div>
+                </m.div>
               </div>
 
               <div>
-                <motion.div
+                <m.div
                   variants={{
                     hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
                     visible: {
@@ -998,8 +998,8 @@ const ProcessStep = ({
                   <Header100 className="mb-4 text-white">
                     {step.title}
                   </Header100>
-                </motion.div>
-                <motion.div
+                </m.div>
+                <m.div
                   variants={{
                     hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
                     visible: {
@@ -1021,9 +1021,9 @@ const ProcessStep = ({
                       {step.disclaimer}
                     </p>
                   )}
-                </motion.div>
+                </m.div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Center Spacer for Path */}
@@ -1033,7 +1033,7 @@ const ProcessStep = ({
           <div
             className={`flex flex-1 ${isEven ? "justify-start" : "justify-end"}`}
           >
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
               whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               viewport={{ margin: "-20% 0px -20% 0px" }}
@@ -1046,7 +1046,7 @@ const ProcessStep = ({
               <div
                 className={`absolute top-1/2 h-4 w-4 -translate-y-1/2 rounded-full blur-md ${step.glow} ${isEven ? "-right-2" : "-left-2"}`}
               />
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>

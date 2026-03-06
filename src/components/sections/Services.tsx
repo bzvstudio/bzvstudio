@@ -11,7 +11,7 @@ import {
   StickyNote,
   Type,
 } from "lucide-react";
-import { motion, useInView } from "motion/react";
+import { m, useInView } from "motion/react";
 
 import { Container } from "@/components/layout";
 import {
@@ -45,7 +45,7 @@ const DesignVisual = () => {
       <div className="relative flex w-full items-center justify-center gap-6">
         {/* 1. Main Interface Window (Shifted Left) */}
         <div className="relative z-10 w-full max-w-[320px] transition-all duration-500 lg:max-w-[340px] lg:-translate-x-12 xl:-translate-x-24">
-          <motion.div
+          <m.div
             className="flex h-[160px] w-full flex-col overflow-hidden rounded-lg border border-white/10 bg-white/5 backdrop-blur-md"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -78,7 +78,7 @@ const DesignVisual = () => {
               <div className="relative flex-1 bg-black/20 p-3">
                 {/* Mock Hero Section */}
                 <div className="flex flex-col gap-2">
-                  <motion.div
+                  <m.div
                     className="h-2 w-3/4 rounded-full bg-white/20"
                     initial={{ width: 0 }}
                     whileInView={{ width: "75%" }}
@@ -89,7 +89,7 @@ const DesignVisual = () => {
                     }}
                     transition={{ delay: 0.4, duration: 0.6 }}
                   />
-                  <motion.div
+                  <m.div
                     className="h-1.5 w-1/2 rounded-full bg-white/10"
                     initial={{ width: 0 }}
                     whileInView={{ width: "50%" }}
@@ -102,7 +102,7 @@ const DesignVisual = () => {
                   />
 
                   <div className="mt-2 grid grid-cols-2 gap-2">
-                    <motion.div
+                    <m.div
                       className="h-16 rounded bg-pink-500/10"
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
@@ -113,7 +113,7 @@ const DesignVisual = () => {
                       }}
                       transition={{ delay: 0.6 }}
                     />
-                    <motion.div
+                    <m.div
                       className="h-16 rounded bg-purple-500/10"
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
@@ -127,7 +127,7 @@ const DesignVisual = () => {
                   </div>
 
                   {/* Action Button */}
-                  <motion.div
+                  <m.div
                     className="mt-2 h-6 w-20 rounded bg-blue-500/20"
                     whileHover={{
                       scale: 1.05,
@@ -137,7 +137,7 @@ const DesignVisual = () => {
                 </div>
 
                 {/* Floating Cursor Interaction */}
-                <motion.div
+                <m.div
                   className="absolute top-1/2 left-1/2 z-20 text-pink-400"
                   initial={{ x: 50, y: 50, opacity: 0 }}
                   whileInView={{ x: 0, y: 0, opacity: 1 }}
@@ -149,9 +149,9 @@ const DesignVisual = () => {
                   transition={{ delay: 1, duration: 1, type: "spring" }}
                 >
                   <MousePointer2 className="h-5 w-5 fill-pink-400/20" />
-                  <motion.div
+                  <m.div
                     className="absolute top-4 left-4 rounded bg-pink-500 px-1.5 py-0.5 text-[8px] font-bold whitespace-nowrap text-white"
-                    initial={{ opacity: 0, scale: 0 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{
                       once: !isDesktop,
@@ -161,15 +161,15 @@ const DesignVisual = () => {
                     transition={{ delay: 1.5 }}
                   >
                     Start Designing
-                  </motion.div>
-                </motion.div>
+                  </m.div>
+                </m.div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* 2. Ideas Canvas (New, on the Right) */}
-        <motion.div
+        <m.div
           className="absolute top-1/2 right-4 hidden h-[140px] w-[200px] -translate-y-1/2 flex-col rounded-lg border border-white/10 bg-white/5 p-3 backdrop-blur-sm xl:flex"
           initial={{ opacity: 0, x: 20, rotate: 6 }}
           whileInView={{ opacity: 1, x: -20, rotate: 6 }}
@@ -193,10 +193,10 @@ const DesignVisual = () => {
 
           <div className="relative flex-1">
             {/* Sticky Note */}
-            <motion.div
+            <m.div
               className="absolute top-0 -left-2 flex h-12 w-12 flex-col gap-1 rounded bg-yellow-200/90 p-1 shadow-lg"
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1, rotate: -6 }}
+              initial={{ scale: 0.95, opacity: 0 }}
+              whileInView={{ scale: 1, rotate: -6, opacity: 1 }}
               viewport={{
                 once: !isDesktop,
                 margin: "-50px",
@@ -208,13 +208,13 @@ const DesignVisual = () => {
               <div className="h-1 w-6 rounded-full bg-black/10" />
               <div className="h-1 w-5 rounded-full bg-black/10" />
               <StickyNote className="absolute right-1 bottom-1 h-3 w-3 text-black/20" />
-            </motion.div>
+            </m.div>
 
             {/* Color Palette */}
-            <motion.div
+            <m.div
               className="absolute top-2 right-0 flex flex-col gap-1 rounded bg-white/10 p-1"
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
+              initial={{ scale: 0.95, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
               viewport={{
                 once: !isDesktop,
                 margin: "-50px",
@@ -225,13 +225,13 @@ const DesignVisual = () => {
               <div className="h-4 w-4 rounded-full bg-pink-500" />
               <div className="h-4 w-4 rounded-full bg-purple-500" />
               <div className="h-4 w-4 rounded-full bg-blue-500" />
-            </motion.div>
+            </m.div>
 
             {/* Image Placeholder */}
-            <motion.div
+            <m.div
               className="absolute bottom-0 left-4 flex h-10 w-16 items-center justify-center rounded bg-white/10"
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1, rotate: 3 }}
+              initial={{ scale: 0.95, opacity: 0 }}
+              whileInView={{ scale: 1, rotate: 3, opacity: 1 }}
               viewport={{
                 once: !isDesktop,
                 margin: "-50px",
@@ -240,10 +240,10 @@ const DesignVisual = () => {
               transition={{ delay: 0.8 }}
             >
               <ImageIcon className="h-4 w-4 text-white/20" />
-            </motion.div>
+            </m.div>
 
             {/* Typography */}
-            <motion.div
+            <m.div
               className="absolute right-2 bottom-2"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -255,9 +255,9 @@ const DesignVisual = () => {
               transition={{ delay: 0.9 }}
             >
               <Type className="h-6 w-6 text-white/20" />
-            </motion.div>
+            </m.div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Background Glow */}
@@ -276,7 +276,7 @@ const BuildVisual = () => {
         <div className="h-2.5 w-2.5 rounded-full bg-green-500/50" />
       </div>
       <div className="mt-4 flex flex-col gap-2.5 font-mono text-[11px] text-nowrap text-white/50">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, x: -10, filter: "blur(4px)" }}
           whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
           viewport={{
@@ -291,8 +291,8 @@ const BuildVisual = () => {
           <span className="text-yellow-200">{`{ Hero }`}</span>
           <span className="text-purple-400">from</span>
           <span className="text-emerald-300">'@/components'</span>
-        </motion.div>
-        <motion.div
+        </m.div>
+        <m.div
           initial={{ opacity: 0, x: -10, filter: "blur(4px)" }}
           whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
           viewport={{
@@ -308,8 +308,8 @@ const BuildVisual = () => {
           <span className="text-blue-400">function</span>
           <span className="text-yellow-200">Page()</span>
           <span className="text-white">{"{"}</span>
-        </motion.div>
-        <motion.div
+        </m.div>
+        <m.div
           initial={{ opacity: 0, x: -10, filter: "blur(4px)" }}
           whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
           viewport={{
@@ -324,8 +324,8 @@ const BuildVisual = () => {
           <span className="text-blue-400"> &lt;</span>
           <span className="text-yellow-200">Hero</span>
           <span className="text-blue-400"> /&gt;</span>
-        </motion.div>
-        <motion.div
+        </m.div>
+        <m.div
           initial={{ opacity: 0, x: -10, filter: "blur(4px)" }}
           whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
           viewport={{
@@ -336,10 +336,10 @@ const BuildVisual = () => {
           transition={{ delay: 0.8, duration: 0.5 }}
         >
           <span className="text-white">{"}"}</span>
-        </motion.div>
+        </m.div>
 
         {/* Status Bar */}
-        <motion.div
+        <m.div
           className="mt-5.5 flex items-center gap-2 rounded bg-white/5 p-2"
           initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -352,7 +352,7 @@ const BuildVisual = () => {
         >
           <div className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
           <span className="text-emerald-500">Compiled successfully</span>
-        </motion.div>
+        </m.div>
       </div>
       <div className="absolute -right-10 -bottom-10 h-32 w-32 rounded-full bg-blue-500/10 blur-2xl" />
     </div>
@@ -378,8 +378,8 @@ const HostingVisual = () => {
       {/* Server Bars */}
       <div className="flex h-36 items-end gap-1.5">
         {[40, 65, 50, 80, 55, 90, 75, 95, 60, 85, 70, 45].map((height, i) => (
-          <motion.div
-            key={i}
+          <m.div
+            key={height}
             className="w-full rounded-t-sm bg-emerald-500/20"
             initial={{ height: "10%" }}
             whileInView={{ height: `${height}%` }}
@@ -410,7 +410,7 @@ const SEOVisual = () => {
       {/* Search Interface */}
       <div className="relative w-full max-w-[200px] space-y-3">
         {/* Search Bar */}
-        <motion.div
+        <m.div
           className="flex h-8 w-full items-center rounded-full border border-white/10 bg-white/5 px-3"
           initial={{ width: "0%", opacity: 0 }}
           whileInView={{ width: "100%", opacity: 1 }}
@@ -422,7 +422,7 @@ const SEOVisual = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <Search className="mr-2 h-3 w-3 text-orange-400" />
-          <motion.div
+          <m.div
             className="h-1.5 w-24 rounded-full bg-white/10"
             initial={{ width: 0 }}
             whileInView={{ width: "60%" }}
@@ -433,12 +433,12 @@ const SEOVisual = () => {
             }}
             transition={{ delay: 0.5, duration: 0.5 }}
           />
-        </motion.div>
+        </m.div>
 
         {/* Results */}
-        {[1, 2, 3].map((i) => (
-          <motion.div
-            key={i}
+        {[1, 2, 3].map((rank) => (
+          <m.div
+            key={rank}
             className="flex items-center gap-3 rounded-lg border border-white/5 bg-white/5 p-2"
             initial={{ opacity: 0, x: -20, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
@@ -447,16 +447,16 @@ const SEOVisual = () => {
               margin: "-50px",
               amount: isDesktop ? 0.4 : 0.1,
             }}
-            transition={{ delay: 0.8 + i * 0.2, duration: 0.5 }}
+            transition={{ delay: 0.8 + rank * 0.2, duration: 0.5 }}
           >
             <div className="flex h-6 w-6 items-center justify-center rounded bg-orange-500/20 text-[10px] font-bold text-orange-400">
-              {i}
+              {rank}
             </div>
             <div className="flex-1 space-y-1.5">
               <div className="h-1.5 w-3/4 rounded-full bg-white/10" />
               <div className="h-1 w-1/2 rounded-full bg-white/5" />
             </div>
-          </motion.div>
+          </m.div>
         ))}
       </div>
 
@@ -465,7 +465,7 @@ const SEOVisual = () => {
         className="pointer-events-none absolute inset-0 h-full w-full opacity-20"
         preserveAspectRatio="none"
       >
-        <motion.path
+        <m.path
           d="M0 200 Q 100 100, 200 150 T 400 50"
           fill="none"
           stroke="#fb923c"
@@ -496,7 +496,7 @@ const BentoCard = ({ item, index }: { item: BentoItem; index: number }) => {
   });
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
@@ -516,7 +516,7 @@ const BentoCard = ({ item, index }: { item: BentoItem; index: number }) => {
       <div className="relative z-10 flex flex-col gap-2">
         <div className="flex items-center gap-2">
           {item.icon && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.5, filter: "blur(10px)" }}
               animate={
                 isInView
@@ -532,10 +532,10 @@ const BentoCard = ({ item, index }: { item: BentoItem; index: number }) => {
               className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white transition-colors group-hover:bg-white/20"
             >
               <item.icon className="h-4 w-4" />
-            </motion.div>
+            </m.div>
           )}
           <SubHeader100
-            as={motion.h3}
+            as={m.h3}
             initial={{ opacity: 0, x: -10, filter: "blur(8px)" }}
             animate={
               isInView
@@ -553,7 +553,7 @@ const BentoCard = ({ item, index }: { item: BentoItem; index: number }) => {
           </SubHeader100>
         </div>
         <Body50
-          as={motion.p}
+          as={m.p}
           initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
           animate={
             isInView
@@ -575,7 +575,7 @@ const BentoCard = ({ item, index }: { item: BentoItem; index: number }) => {
       <div className="relative mt-4 h-56 w-full overflow-hidden rounded-xl">
         {item.header}
       </div>
-    </motion.div>
+    </m.div>
   );
 };
 
@@ -622,7 +622,7 @@ export const Services = () => {
       <Container>
         <div className="mb-16 flex flex-col items-center text-center md:mb-24">
           <Header100
-            as={motion.h2}
+            as={m.h2}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{
@@ -638,7 +638,7 @@ export const Services = () => {
             In one place
           </Header100>
           <Body200
-            as={motion.p}
+            as={m.p}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{
@@ -656,7 +656,7 @@ export const Services = () => {
 
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-4 lg:grid-cols-3">
           {items.map((item, i) => (
-            <BentoCard key={i} item={item} index={i} />
+            <BentoCard key={item.title} item={item} index={i} />
           ))}
         </div>
       </Container>

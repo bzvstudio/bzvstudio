@@ -1,5 +1,5 @@
 import { Mail, MessageCircle, Send } from "lucide-react";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 
 import { Container } from "@/components/layout";
 import { Body50 } from "@/components/ui";
@@ -27,7 +27,7 @@ export function Footer() {
         </a>
 
         <div className="flex items-center gap-6">
-          <motion.a
+          <m.a
             href={`mailto:${email}`}
             aria-label="Email"
             className="text-muted-foreground focus-visible:ring-offset-background flex items-center gap-2 rounded-sm transition-colors outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
@@ -35,7 +35,7 @@ export function Footer() {
             initial="initial"
             data-umami-event="Footer - Email Link"
           >
-            <motion.div
+            <m.div
               variants={{
                 hover: { rotate: [0, -10, 10, -5, 5, 0] },
                 initial: { rotate: 0 },
@@ -43,12 +43,12 @@ export function Footer() {
               transition={{ duration: 0.5 }}
             >
               <Mail className="h-5 w-5" />
-            </motion.div>
+            </m.div>
             <Body50 as="span" className="hidden sm:inline">
               Email
             </Body50>
-          </motion.a>
-          <motion.a
+          </m.a>
+          <m.a
             href={telegram}
             target="_blank"
             rel="noopener noreferrer"
@@ -58,7 +58,7 @@ export function Footer() {
             initial="initial"
             data-umami-event="Footer - Telegram Link"
           >
-            <motion.div
+            <m.div
               variants={{
                 hover: { rotate: [0, -10, 10, -5, 5, 0] },
                 initial: { rotate: 0 },
@@ -66,12 +66,12 @@ export function Footer() {
               transition={{ duration: 0.5 }}
             >
               <Send className="h-5 w-5" />
-            </motion.div>
+            </m.div>
             <Body50 as="span" className="hidden sm:inline">
               Telegram
             </Body50>
-          </motion.a>
-          <motion.a
+          </m.a>
+          <m.a
             href={whatsapp}
             target="_blank"
             rel="noopener noreferrer"
@@ -81,7 +81,7 @@ export function Footer() {
             initial="initial"
             data-umami-event="Footer - WhatsApp Click"
           >
-            <motion.div
+            <m.div
               variants={{
                 hover: { rotate: [0, -10, 10, -5, 5, 0] },
                 initial: { rotate: 0 },
@@ -89,11 +89,11 @@ export function Footer() {
               transition={{ duration: 0.5 }}
             >
               <MessageCircle className="h-5 w-5" />
-            </motion.div>
+            </m.div>
             <Body50 as="span" className="hidden sm:inline">
               WhatsApp
             </Body50>
-          </motion.a>
+          </m.a>
         </div>
       </Container>
     </footer>

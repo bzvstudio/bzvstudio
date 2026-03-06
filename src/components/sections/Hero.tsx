@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { MapPin } from "lucide-react";
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { m, useMotionValue, useSpring, useTransform } from "motion/react";
 
 import { Container } from "@/components/layout";
 import { Button, Display100, Body200, Body50 } from "@/components/ui";
@@ -34,7 +34,7 @@ export function Hero() {
     <section className="bg-background relative flex min-h-screen items-center justify-center overflow-hidden pt-20">
       {/* Background Glow - Blobs */}
       {/* Top Center-Right Blob */}
-      <motion.div
+      <m.div
         style={{ x, y }}
         initial={{
           scale: 1,
@@ -59,7 +59,7 @@ export function Hero() {
       />
 
       {/* Bottom Left Blob */}
-      <motion.div
+      <m.div
         style={{
           x: xInverse,
           y: yInverse,
@@ -88,7 +88,7 @@ export function Hero() {
       />
 
       {/* Center Detail Blob */}
-      <motion.div
+      <m.div
         style={{
           x: useTransform(springX, [-0.5, 0.5], ["-15px", "15px"]),
           y: useTransform(springY, [-0.5, 0.5], ["15px", "-15px"]),
@@ -119,7 +119,7 @@ export function Hero() {
       {/* Content */}
       <Container className="relative z-10 flex max-w-6xl flex-col items-center gap-8 text-center">
         {/* Chip */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, rotateX: 90 }}
           animate={{ opacity: 1, rotateX: 0 }}
           transition={{
@@ -131,7 +131,7 @@ export function Hero() {
           }}
           style={{ transformPerspective: 1000 }}
         >
-          <motion.div
+          <m.div
             className="text-muted-foreground inline-flex cursor-default items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium backdrop-blur-sm"
             whileHover={{
               scale: 1.05,
@@ -144,13 +144,13 @@ export function Hero() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
             </div>
             <Body50 className="font-medium">Available for new projects</Body50>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
 
         {/* Headline */}
         <Display100 as="h1" className="text-foreground relative z-20">
           <span className="overflow-hidden">
-            <motion.span
+            <m.span
               initial={{
                 y: "30%",
                 rotate: 1,
@@ -166,10 +166,10 @@ export function Hero() {
               className="inline-block origin-top-left sm:text-nowrap"
             >
               Future-ready websites <span className="sm:hidden">for</span>
-            </motion.span>
+            </m.span>
           </span>
           <span className="overflow-hidden">
-            <motion.span
+            <m.span
               initial={{ y: "30%", rotate: 1, opacity: 0 }}
               animate={{ y: 0, rotate: 0, opacity: 1 }}
               transition={{
@@ -180,13 +180,13 @@ export function Hero() {
               className="inline-block origin-top-left bg-gradient-to-br from-white via-white/80 to-white/40 bg-clip-text text-transparent"
             >
               <span className="hidden sm:inline-block">for</span> modern brands.
-            </motion.span>
+            </m.span>
           </span>
         </Display100>
 
         {/* Supporting Text */}
         <Body200
-          as={motion.p}
+          as={m.p}
           initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -197,7 +197,7 @@ export function Hero() {
         </Body200>
 
         {/* CTAs */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{
@@ -230,10 +230,10 @@ export function Hero() {
             View testimonials
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button> */}
-        </motion.div>
+        </m.div>
 
         {/* Location Indicator */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
@@ -247,8 +247,8 @@ export function Hero() {
             {"Based in Birmingham, UK. Operating globally."
               .split(" ")
               .map((word, i) => (
-                <motion.span
-                  key={i}
+                <m.span
+                  key={word}
                   initial={{ opacity: 0, x: -10, filter: "blur(4px)" }}
                   animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                   transition={{
@@ -265,10 +265,10 @@ export function Hero() {
                   }}
                 >
                   {word}
-                </motion.span>
+                </m.span>
               ))}
           </Body50>
-        </motion.div>
+        </m.div>
       </Container>
     </section>
   );

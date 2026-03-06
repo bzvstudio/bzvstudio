@@ -9,7 +9,7 @@ import {
   FileText,
   X,
 } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, m } from "motion/react";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -269,7 +269,7 @@ export function Contact() {
       <Container>
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
           {/* Left Column */}
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -277,7 +277,7 @@ export function Contact() {
             className="flex flex-col"
           >
             <div>
-              <motion.div
+              <m.div
                 variants={itemVariants}
                 className="mb-8 flex cursor-default items-center gap-2"
               >
@@ -290,27 +290,27 @@ export function Contact() {
                     Accepting new projects
                   </Caption>
                 </div>
-              </motion.div>
+              </m.div>
 
-              <motion.div variants={itemVariants}>
+              <m.div variants={itemVariants}>
                 <Display200 className="mb-12 text-white">
                   Let's build your digital product.
                 </Display200>
-              </motion.div>
+              </m.div>
 
-              <motion.div variants={itemVariants} className="mb-12 space-y-4">
+              <m.div variants={itemVariants} className="mb-12 space-y-4">
                 <Body200 className="text-muted-foreground">
                   Fancy a simple message first? Contact by:
                 </Body200>
                 <div className="flex flex-wrap items-center gap-6">
-                  <motion.a
+                  <m.a
                     href={`mailto:${email}`}
                     className="text-muted-foreground focus-visible:ring-offset-background flex items-center gap-2 rounded-sm transition-colors outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
                     whileHover="hover"
                     initial="initial"
                     data-umami-event="Contact - Email Link"
                   >
-                    <motion.div
+                    <m.div
                       variants={{
                         hover: { rotate: [0, -10, 10, -5, 5, 0] },
                         initial: { rotate: 0 },
@@ -318,10 +318,10 @@ export function Contact() {
                       transition={{ duration: 0.5 }}
                     >
                       <Mail className="h-4 w-4" />
-                    </motion.div>
+                    </m.div>
                     <Body50 as="span">Email</Body50>
-                  </motion.a>
-                  <motion.a
+                  </m.a>
+                  <m.a
                     href={telegram}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -330,7 +330,7 @@ export function Contact() {
                     initial="initial"
                     data-umami-event="Contact - Telegram Link"
                   >
-                    <motion.div
+                    <m.div
                       variants={{
                         hover: { rotate: [0, -10, 10, -5, 5, 0] },
                         initial: { rotate: 0 },
@@ -338,10 +338,10 @@ export function Contact() {
                       transition={{ duration: 0.5 }}
                     >
                       <Send className="h-4 w-4" />
-                    </motion.div>
+                    </m.div>
                     <Body50 as="span">Telegram</Body50>
-                  </motion.a>
-                  <motion.a
+                  </m.a>
+                  <m.a
                     href={whatsapp}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -350,7 +350,7 @@ export function Contact() {
                     initial="initial"
                     data-umami-event="Contact - WhatsApp Link"
                   >
-                    <motion.div
+                    <m.div
                       variants={{
                         hover: { rotate: [0, -10, 10, -5, 5, 0] },
                         initial: { rotate: 0 },
@@ -358,14 +358,14 @@ export function Contact() {
                       transition={{ duration: 0.5 }}
                     >
                       <MessageCircle className="h-4 w-4" />
-                    </motion.div>
+                    </m.div>
                     <Body50 as="span">WhatsApp</Body50>
-                  </motion.a>
+                  </m.a>
                 </div>
-              </motion.div>
+              </m.div>
             </div>
 
-            <motion.div
+            <m.div
               variants={itemVariants}
               className="flex items-center gap-4 sm:mt-4"
             >
@@ -386,13 +386,13 @@ export function Contact() {
                   Founder & Lead Developer
                 </Body100>
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
 
           {/* Right Column - Form */}
           <AnimatePresence mode="wait">
             {!isSubmitted ? (
-              <motion.form
+              <m.form
                 key="contact-form"
                 initial="hidden"
                 whileInView="visible"
@@ -402,7 +402,7 @@ export function Contact() {
                 onSubmit={handleSubmit}
                 className="space-y-6"
               >
-                <motion.div variants={itemVariants} className="space-y-2">
+                <m.div variants={itemVariants} className="space-y-2">
                   <Label htmlFor="fullName">Full Name</Label>
                   <Input
                     id="fullName"
@@ -421,9 +421,9 @@ export function Contact() {
                   {errors.fullName && (
                     <p className="text-xs text-red-500">{errors.fullName}</p>
                   )}
-                </motion.div>
+                </m.div>
 
-                <motion.div variants={itemVariants} className="space-y-2">
+                <m.div variants={itemVariants} className="space-y-2">
                   <Label htmlFor="email">Email</Label>
                   <Input
                     id="email"
@@ -443,9 +443,9 @@ export function Contact() {
                   {errors.email && (
                     <p className="text-xs text-red-500">{errors.email}</p>
                   )}
-                </motion.div>
+                </m.div>
 
-                <motion.div variants={itemVariants} className="space-y-2">
+                <m.div variants={itemVariants} className="space-y-2">
                   <Label>Where did you hear about us?</Label>
                   <Select
                     value={formData.source || undefined}
@@ -491,9 +491,9 @@ export function Contact() {
                   {errors.source && (
                     <p className="text-xs text-red-500">{errors.source}</p>
                   )}
-                </motion.div>
+                </m.div>
 
-                <motion.div variants={itemVariants} className="space-y-2">
+                <m.div variants={itemVariants} className="space-y-2">
                   <Label htmlFor="project">Describe your project</Label>
                   <Textarea
                     id="project"
@@ -512,9 +512,9 @@ export function Contact() {
                   {errors.project && (
                     <p className="text-xs text-red-500">{errors.project}</p>
                   )}
-                </motion.div>
+                </m.div>
 
-                <motion.div variants={itemVariants} className="space-y-2">
+                <m.div variants={itemVariants} className="space-y-2">
                   <Label>Budget</Label>
                   <Select
                     value={formData.budget || undefined}
@@ -554,9 +554,9 @@ export function Contact() {
                   {errors.budget && (
                     <p className="text-xs text-red-500">{errors.budget}</p>
                   )}
-                </motion.div>
+                </m.div>
 
-                <motion.div variants={itemVariants} className="space-y-2">
+                <m.div variants={itemVariants} className="space-y-2">
                   <div className="flex items-baseline justify-between">
                     <Label>Have a brief?</Label>
                     <Caption className="text-muted-foreground">
@@ -618,9 +618,9 @@ export function Contact() {
                   {errors.brief && (
                     <p className="text-xs text-red-500">{errors.brief}</p>
                   )}
-                </motion.div>
+                </m.div>
 
-                <motion.div variants={itemVariants} className="space-y-4 pt-4">
+                <m.div variants={itemVariants} className="space-y-4 pt-4">
                   <label className="group flex cursor-pointer items-start gap-3">
                     <div className="relative mt-0.5 flex items-center">
                       <input
@@ -645,10 +645,10 @@ export function Contact() {
                       {errors.agreeProcessing}
                     </p>
                   )}
-                </motion.div>
+                </m.div>
 
-                <motion.div variants={itemVariants} className="pt-4">
-                  <motion.button
+                <m.div variants={itemVariants} className="pt-4">
+                  <m.button
                     whileHover={isFormValid ? "hover" : undefined}
                     type="submit"
                     disabled={!isFormValid}
@@ -661,7 +661,7 @@ export function Contact() {
                     )}
                   >
                     Start Project
-                    <motion.span
+                    <m.span
                       variants={{
                         visible: {
                           x: 0,
@@ -675,12 +675,12 @@ export function Contact() {
                       className="ml-2 flex items-center"
                     >
                       <ArrowRight className="h-5 w-5" />
-                    </motion.span>
-                  </motion.button>
-                </motion.div>
-              </motion.form>
+                    </m.span>
+                  </m.button>
+                </m.div>
+              </m.form>
             ) : (
-              <motion.div
+              <m.div
                 key="success-message"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -699,7 +699,7 @@ export function Contact() {
                   forward to reading your project proposal and exploring how we
                   can help bring your vision to life.
                 </Body200>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>

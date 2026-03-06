@@ -1,6 +1,6 @@
 import { useEffect, Suspense, lazy, useRef } from "react";
 import Lenis from "lenis";
-import { useInView } from "motion/react";
+import { LazyMotion, domAnimation, useInView } from "motion/react";
 
 import { Footer } from "@/components/sections/Footer";
 import { Header } from "@/components/sections/Header";
@@ -30,7 +30,7 @@ const Contact = () => {
   );
 };
 
-export function App() {
+function App() {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -53,17 +53,19 @@ export function App() {
   }, []);
 
   return (
-    <div className="bg-background text-foreground min-h-screen antialiased selection:bg-white/20">
-      <Header />
-      <main>
-        <Hero />
-        <Services />
-        <Process />
-        <Contact />
-      </main>
-      <Footer />
-      <Toaster />
-    </div>
+    <LazyMotion features={domAnimation}>
+      <div className="bg-background text-foreground min-h-screen antialiased selection:bg-white/20">
+        <Header />
+        <main>
+          <Hero />
+          <Services />
+          <Process />
+          <Contact />
+        </main>
+        <Footer />
+        <Toaster />
+      </div>
+    </LazyMotion>
   );
 }
 
